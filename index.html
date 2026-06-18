@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Игра: Поиск предметов</title>
+    <title>Игра: Сафари</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -46,7 +46,7 @@
 
         .character {
             position: absolute;
-            width: 100px;
+            width: 120px; /* Немного увеличим размер для африканских животных */
             cursor: pointer;
             user-select: none;
             -webkit-user-drag: none;
@@ -55,28 +55,32 @@
 </head>
 <body>
 
-    <h1>Колло бОк</h1>
-    <div class="task" id="task-text">Найди персонаж...</div>
+    <h1>Сафари: Поиск животных Африки</h1>
+    <div class="task" id="task-text">Найди животное...</div>
 
     <div class="game-container">
-        <img src="forest.jpg" alt="Лес" class="background-img">
+        <!-- Фон с просторами Африки -->
+        <img src="fon.jpg" alt="Саванна" class="background-img">
 
-        <img src="volk.png" alt="Волк" class="character" data-name="volk">
-        <img src="zayac.png" alt="Заяц" class="character" data-name="zayac">
-        <img src="lisa.png" alt="Лиса" class="character" data-name="lisa">
-        <img src="medved.png" alt="Медведь" class="character" data-name="medved">
+        <!-- Африканские животные -->
+        <img src="lion.png" alt="Лев" class="character" data-name="lion">
+        <img src="elephant.png" alt="Слон" class="character" data-name="elephant">
+        <img src="giraffe.png" alt="Жираф" class="character" data-name="giraffe">
+        <img src="monkey.png" alt="Обезьяна" class="character" data-name="monkey">
     </div>
 
     <script>
         const characters = document.querySelectorAll('.character');
         const taskText = document.getElementById('task-text');
         
-        const names = ['volk', 'zayac', 'lisa', 'medved'];
+        // Названия африканских животных на английском языке
+        const names = ['lion', 'elephant', 'giraffe', 'monkey'];
         const targetName = names[Math.floor(Math.random() * names.length)];
         
-        taskText.textContent = 'Найди персонаж ' + targetName;
+        taskText.textContent = 'Найди животное ' + targetName;
 
         characters.forEach(char => {
+            // Размещаем животных в произвольных местах на фоне саванны
             const randomX = Math.floor(Math.random() * 700);
             const randomY = Math.floor(Math.random() * 200) + 300; 
             
@@ -85,10 +89,10 @@
 
             char.addEventListener('click', function() {
                 if (char.getAttribute('data-name') === targetName) {
-                    alert('Поздравляем! Ты нашли нужного персонажа! 🎉');
+                    alert('Поздравляем! Ты нашел ' + targetName + '! 🎉');
                     location.reload();
                 } else {
-                    alert('Это не тот персонаж! Ищи ' + targetName);
+                    alert('Это не тот! Ищи ' + targetName);
                 }
             });
         });
